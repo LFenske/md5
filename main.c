@@ -4,6 +4,7 @@ static char *SCCSID = "@(#)$Header$";
 #include <stdio.h>	/* for stderr, fprintf, FILE, fopen, fread, EOF */
 #include <stdlib.h>	/* for getopt */
 #include <unistd.h>	/* for getopt */
+#include "global.h"
 #include "md5.h"
 
 
@@ -42,31 +43,32 @@ char *inname;
   char buf[BUFSIZE];
   int  numread;
   MD5_CTX mdContext;
+  unsigned char digest[16];
 
   MD5Init(&mdContext);
   do {
     numread = fread(buf, 1, BUFSIZE, infile);
     MD5Update(&mdContext, buf, numread);
   } while (numread > 0);
-  MD5Final(&mdContext);
+  MD5Final(digest, &mdContext);
   printf(
     "%.2x%.2x%.2x%.2x %.2x%.2x%.2x%.2x %.2x%.2x%.2x%.2x %.2x%.2x%.2x%.2x",
-    mdContext.digest[ 0],
-    mdContext.digest[ 1],
-    mdContext.digest[ 2],
-    mdContext.digest[ 3],
-    mdContext.digest[ 4],
-    mdContext.digest[ 5],
-    mdContext.digest[ 6],
-    mdContext.digest[ 7],
-    mdContext.digest[ 8],
-    mdContext.digest[ 9],
-    mdContext.digest[10],
-    mdContext.digest[11],
-    mdContext.digest[12],
-    mdContext.digest[13],
-    mdContext.digest[14],
-    mdContext.digest[15]
+    digest[ 0],
+    digest[ 1],
+    digest[ 2],
+    digest[ 3],
+    digest[ 4],
+    digest[ 5],
+    digest[ 6],
+    digest[ 7],
+    digest[ 8],
+    digest[ 9],
+    digest[10],
+    digest[11],
+    digest[12],
+    digest[13],
+    digest[14],
+    digest[15]
   );
   if (inname != NULL)
     printf(": %s", inname);
