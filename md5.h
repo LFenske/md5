@@ -1,3 +1,4 @@
+static char *hSCCSID = "@(#)$Header$";
 /************************************************************
  ** md5.h -- header file for implementation of MD5                    **
     RSA Data Security, Inc. MD5 Message-Digest Algorithm              **

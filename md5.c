@@ -1,3 +1,4 @@
+static char *SCCSID = "@(#)$Header$";
 /************************************************************
  ** md5.c -- the source code for MD5 routines                         **
  ** RSA Data Security, Inc. MD5 Message-Digest Algorithm              **
