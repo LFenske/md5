@@ -4,7 +4,7 @@ NAME
 
 SYNTAX
 
-    md5 [input file]
+    md5 [-f <file list>] | [<input file>]...
 
 DESCRIPTION
 
@@ -17,16 +17,48 @@ DESCRIPTION
 
 OPTIONS
 
-    The only option is the input file name.  If the file name is not
-    given, input will be from standard input (stdin).
+    The -f option takes a name for a file with a list of filenames.
+    With this options specified, the md5 number will be computed and
+    printed for each file in the list.  If the filename is "-", stdin
+    will be read for a list of file names.
+
+    Without the -f option, the md5 number will be computed and printed
+    for each file named on the command line.  If no files are named on
+    the command line, stdin will be used.  If a file named "-" appears
+    as one of the files on the command line, stdin will be used
+    instead.
 
 EXAMPLES
 
     $ md5 /hp-ux
-    655f9b87 246b4d37 19c6be67 6206927b
+    655f9b87 246b4d37 19c6be67 6206927b: /hp-ux
 
     $ cat /etc/passwd | md5
     cbe7e8bb 3d0696b5 9d43715d 4577aeeb
+
+    $ ls | md5 -f -
+    097901ac 8cee8895 27be2c2d 2ff8d5ba: Makefile
+    ba53d1f9 dedc6a48 f1e96bf5 3fb27491: main.c
+    928568b7 ba20ca2c de7f4710 5a2ea3f7: md5.1
+    95347897 23107ed4 4b0046e6 83ac17b0: md5.3
+    af27fbb1 a73230dc 97fce4e2 83af52b0: md5.c
+    14fd4b53 f0cd9271 066fd0a1 c8424fd4: md5.h
+
+    $ md5 *
+    097901ac 8cee8895 27be2c2d 2ff8d5ba: Makefile
+    ba53d1f9 dedc6a48 f1e96bf5 3fb27491: main.c
+    928568b7 ba20ca2c de7f4710 5a2ea3f7: md5.1
+    95347897 23107ed4 4b0046e6 83ac17b0: md5.3
+    af27fbb1 a73230dc 97fce4e2 83af52b0: md5.c
+    14fd4b53 f0cd9271 066fd0a1 c8424fd4: md5.h
+
+    $ ls > /tmp/q; md5 -f /tmp/q
+    097901ac 8cee8895 27be2c2d 2ff8d5ba: Makefile
+    ba53d1f9 dedc6a48 f1e96bf5 3fb27491: main.c
+    928568b7 ba20ca2c de7f4710 5a2ea3f7: md5.1
+    95347897 23107ed4 4b0046e6 83ac17b0: md5.3
+    af27fbb1 a73230dc 97fce4e2 83af52b0: md5.c
+    14fd4b53 f0cd9271 066fd0a1 c8424fd4: md5.h
 
 SEE ALSO
 
