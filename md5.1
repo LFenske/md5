@@ -1,0 +1,38 @@
+NAME
+
+    md5 - "RSA Data Security, Inc. MD5 Message-Digest Algorithm"
+
+SYNTAX
+
+    md5 [input file]
+
+DESCRIPTION
+
+    Hash a file using the "RSA Data Security, Inc. MD5 Message-Digest
+    Algorithm".
+
+    Output a 128 bit number as 4 32-bit (8 digit) hexadecimal numbers.
+    There is a very high probability of this number being different for
+    each different input file.
+
+OPTIONS
+
+    The only option is the input file name.  If the file name is not
+    given, input will be from standard input (stdin).
+
+EXAMPLES
+
+    $ md5 /hp-ux
+    655f9b87 246b4d37 19c6be67 6206927b
+
+    $ cat /etc/passwd | md5
+    cbe7e8bb 3d0696b5 9d43715d 4577aeeb
+
+SEE ALSO
+
+    md5(3)
+    "Dr. Dobb's Journal", September 1991, page 148
+
+MAN-PAGE VERSION
+
+    @(#)$Header$
