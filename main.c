@@ -1,8 +1,9 @@
-/* $Header$ */
+static char *SCCSID = "@(#)$Header$";
 
 
 #include <stdio.h>	/* for stderr, fprintf, FILE, fopen, fread, EOF */
 #include <stdlib.h>	/* for getopt */
+#include <unistd.h>	/* for getopt */
 #include "md5.h"
 
 
@@ -81,29 +82,27 @@ char **argv;
   char *inname, *listname;
   FILE *infile, *listfile;
 
-  {
-    int c;
-    extern char *optarg;
-    extern int optind, opterr, optopt;
+  int c;
+  extern char *optarg;
+  extern int optind, opterr, optopt;
 
-    listname = NULL;
-    while (EOF != (c = getopt(argc, argv, "f:"))){
-      switch (c) {
-      case 'f':
-	listname = optarg;
-	if (listname[0] == '-' && listname[1] == 0) {
-	  listfile = stdin;
-	} else {
-	  if (NULL == (listfile = fopen(listname, "r"))) {
-	    perror("fopen list file");
-	    exit(2);
-	  }
+  listname = NULL;
+  while (EOF != (c = getopt(argc, argv, "f:"))){
+    switch (c) {
+    case 'f':
+      listname = optarg;
+      if (listname[0] == '-' && listname[1] == 0) {
+	listfile = stdin;
+      } else {
+	if (NULL == (listfile = fopen(listname, "r"))) {
+	  perror("fopen list file");
+	  exit(2);
 	}
-	break;
-      case '?':
-	usage(argv[0]);
-	exit(1);
       }
+      break;
+    case '?':
+      usage(argv[0]);
+      exit(1);
     }
   }
 
@@ -123,7 +122,7 @@ char **argv;
 	  }
 	}
 	dofile(infile, inname);
-	close(infile);
+	fclose(infile);
       }
     }
   } else {
@@ -141,7 +140,7 @@ char **argv;
 	exit(2);
       }
       dofile(infile, inname);
-      close(infile);
+      fclose(infile);
     }
   }
 
