@@ -70,6 +70,7 @@ char *inname;
   if (inname != NULL)
     printf(": %s", inname);
   printf("\n");
+  fflush(stdout);
 }
 
 
@@ -122,6 +123,7 @@ char **argv;
 	  }
 	}
 	dofile(infile, inname);
+	close(infile);
       }
     }
   } else {
@@ -139,6 +141,7 @@ char **argv;
 	exit(2);
       }
       dofile(infile, inname);
+      close(infile);
     }
   }
 
