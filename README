@@ -1,0 +1,8 @@
+This is an ancient, but useful, program to compute the MD5 hash of one
+or more files, specified in one of several ways.  It has been done better
+now with standard utilities.
+
+This is used by canlink, so I keep it around as is.
+
+Looks like it was originally checked in to source control (probably RCS)
+on 1993-01-17 and has had few changes since.
