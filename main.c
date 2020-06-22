@@ -4,6 +4,7 @@ static char *SCCSID = "@(#)$Header$";
 #include <stdio.h>	/* for stderr, fprintf, FILE, fopen, fread, EOF */
 #include <stdlib.h>	/* for getopt */
 #include <unistd.h>	/* for getopt */
+#include <string.h>     /* for strlen */
 #include "global.h"
 #include "md5.h"
 
